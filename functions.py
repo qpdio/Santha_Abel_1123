@@ -1,8 +1,10 @@
 from os import system
 from random import randint
-from data import szamkitalalos
+from data import szamkitalalos, kopapirollo, amoba
 
 szamkitalalos_file_name='rekord_szamkitalalos.csv'
+kopapirollo_file_name='rekord_kopapirollo.csv'
+amoba_file_name='rekord_amoba.csv'
 
 def menu():
     print('JÁTÉKOK')
