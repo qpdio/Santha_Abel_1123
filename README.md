@@ -1,7 +1,7 @@
 # Santha_Abel_1123
 
 CMD-ben futtatható három játékot szeretnék elkészíteni
-
+\n\n\n
 1. Amőba
 2. Kő papír olló
 3. Találd ki a számot
