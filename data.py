@@ -1,0 +1,3 @@
+amoba=[]
+szamkitalalos=[]
+kopapirollo=[]
