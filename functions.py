@@ -1,6 +1,6 @@
 from os import system
 from random import randint
-from data import szamkitalalos, kopapirollo, amoba
+from data import szamkitalalos, kopapirollo, amoba, szamkitalalos_rekord
 
 szamkitalalos_file_name='rekord_szamkitalalos.csv'
 kopapirollo_file_name='rekord_kopapirollo.csv'
@@ -46,5 +46,26 @@ def szamkitalalos():
 def tippek_szama_mentese_fajlba(tippek_szama):
     file=open(szamkitalalos_file_name, 'a', encoding='utf-8')
     file.write(f'\n{tippek_szama+1}')
-   
+
+def rekordok():
+    print('0 - Vissza')
+    print('1 - Összes rekord')
+    print('2 - Legjobb rekord')
+    rekord_choice = input('Válasszon egy menüpontot: ')
+    return rekord_choice
+    
+    
+def rekordok_betoltese():
+    file=open(szamkitalalos_file_name, 'r', encoding='utf-8')
+    file.readline()
+    for egysor in file:
+        egysor.strip()          
+        szamkitalalos_rekord.append(int(egysor))
+    file.close()
+    
+def osszes_rekordok_kilistazasa():
+    print('Rekordjaid:')
+    for i in range(len(szamkitalalos_rekord)):
+        print(f'{i}. {szamkitalalos_rekord[i]}')
+    input('Tovább...')
     
