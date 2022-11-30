@@ -1,5 +1,5 @@
 from os import system
-from functions import menu, szamkitalalos, rekordok, osszes_rekordok_kilistazasa, rekordok_betoltese
+from functions import menu, szamkitalalos, rekordok, osszes_rekordok_kilistazasa, rekordok_betoltese, ko_papir_ollo, pontok_mentese_fajlba
 
 rekordok_betoltese()
 
@@ -12,7 +12,7 @@ while choice!='0':
         #Amőba
     elif choice=='2':
         system('cls')
-        #Kő 
+        ko_papir_ollo()
     elif choice=='3':
         system('cls')
         szamkitalalos()

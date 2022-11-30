@@ -1,6 +1,7 @@
 from os import system
 from random import randint
 from data import szamkitalalos, kopapirollo, amoba, szamkitalalos_rekord
+from random import randint
 
 szamkitalalos_file_name='rekord_szamkitalalos.csv'
 kopapirollo_file_name='rekord_kopapirollo.csv'
@@ -69,3 +70,60 @@ def osszes_rekordok_kilistazasa():
         print(f'{i}. {szamkitalalos_rekord[i]}')
     input('Tovább...')
     
+def ko_papir_ollo():
+
+    opciok = ['kő', 'papír', 'olló']
+    valasztas = ''
+    random_szam = randint(0,2)
+    bot_valasztas = opciok[random_szam]
+    pontok = 0
+
+    print('kő - papír - olló?')
+
+    while valasztas not in opciok:
+        valasztas = input('Válassz!\n')
+    
+    system('cls')
+
+    if valasztas == 'kő' and bot_valasztas == 'papír':
+        print('Nyertél')
+        pontok += 1
+        print(f'A gép a következőt választotta: {bot_valasztas}')
+        pontok_mentese_fajlba(pontok)
+    elif valasztas == 'papír' and bot_valasztas == 'olló':
+        print('Nyertél')
+        pontok += 1
+        print(f'A gép a következőt választotta: {bot_valasztas}')
+        pontok_mentese_fajlba(pontok)
+    elif valasztas == 'olló' and bot_valasztas == 'papír':
+        print('Nyertél')
+        pontok += 1
+        print(f'A gép a következőt választotta: {bot_valasztas}')
+        pontok_mentese_fajlba(pontok)
+    else:
+        if valasztas == bot_valasztas:
+            print('Döntetlen')
+            print(f'A gép a következőt választotta: {bot_valasztas}')
+        else:
+            print('Vesztettél')
+            print(f'A gép a következőt választotta: {bot_valasztas}')
+            pontok -= 1
+            pontok_mentese_fajlba(pontok)
+    
+
+    input('')
+    system('cls')
+    jatek_ujra = input('Szeretnél újra játszani? Igen / Nem\n').lower()
+
+    if jatek_ujra == 'igen' or jatek_ujra != 'nem':
+        system('cls')
+        ko_papir_ollo()
+    else:
+        system('cls')
+        input('Tovább...')
+    
+    
+
+def pontok_mentese_fajlba(pontok):
+    file=open(kopapirollo_file_name, 'a', encoding='utf-8')
+    file.write(f'\n{pontok}')
