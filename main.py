@@ -1,7 +1,5 @@
 from os import system
-from functions import menu, szamkitalalos, rekordok, osszes_rekordok_kilistazasa, rekordok_betoltese, ko_papir_ollo, pontok_mentese_fajlba
-
-rekordok_betoltese()
+from functions import *
 
 choice=''
 while choice!='0':
@@ -9,7 +7,15 @@ while choice!='0':
     choice=menu()
     if choice=='1':
         system('cls')
-        #Amőba
+        while jatek:
+            printtabla(tabla)
+            bekeres(tabla)
+            csekk_nyertes(tabla)
+            csekk_dontetlen(tabla)
+            karakter_csere()
+            bot(tabla)
+            csekk_nyertes(tabla)
+            csekk_dontetlen(tabla)
     elif choice=='2':
         system('cls')
         ko_papir_ollo()

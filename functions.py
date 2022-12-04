@@ -1,6 +1,6 @@
 from os import system
-from random import randint
 from data import szamkitalalos, kopapirollo, amoba, szamkitalalos_rekord
+import random
 from random import randint
 
 szamkitalalos_file_name='rekord_szamkitalalos.csv'
@@ -127,3 +127,105 @@ def ko_papir_ollo():
 def pontok_mentese_fajlba(pontok):
     file=open(kopapirollo_file_name, 'a', encoding='utf-8')
     file.write(f'\n{pontok}')
+
+
+tabla = ["-", "-", "-",
+        "-", "-", "-",
+        "-", "-", "-"]
+jelenlegi_jatekos = "X"
+nyertes = None
+jatek = True
+
+def printtabla(tabla):
+    print(tabla[0] + " | " + tabla[1] + " | " + tabla[2])
+    print("---------")
+    print(tabla[3] + " | " + tabla[4] + " | " + tabla[5])
+    print("---------")
+    print(tabla[6] + " | " + tabla[7] + " | " + tabla[8])
+
+
+
+def bekeres(tabla):
+    inp = int(input("Válassz egy helyet 1-től 9-ig: "))
+    if tabla[inp-1] == "-":
+        tabla[inp-1] = jelenlegi_jatekos
+    else:
+        print("Nem választató!")
+
+
+def csekk_vizszintesen(tabla):
+    global nyertes
+    if tabla[0] == tabla[1] == tabla[2] and tabla[0] != "-":
+        nyertes = tabla[0]
+        return True
+    elif tabla[3] == tabla[4] == tabla[5] and tabla[3] != "-":
+        nyertes = tabla[3]
+        return True
+    elif tabla[6] == tabla[7] == tabla[8] and tabla[6] != "-":
+        nyertes = tabla[6]
+        return True
+
+def csekk_oszloposan(tabla):
+    global nyertes
+    if tabla[0] == tabla[3] == tabla[6] and tabla[0] != "-":
+        nyertes = tabla[0]
+        return True
+    elif tabla[1] == tabla[4] == tabla[7] and tabla[1] != "-":
+        nyertes = tabla[1]
+        return True
+    elif tabla[2] == tabla[5] == tabla[8] and tabla[2] != "-":
+        nyertes = tabla[3]
+        return True
+
+
+def csekk_atlosan(tabla):
+    global nyertes
+    if tabla[0] == tabla[4] == tabla[8] and tabla[0] != "-":
+        nyertes = tabla[0]
+        return True
+    elif tabla[2] == tabla[4] == tabla[6] and tabla[4] != "-":
+        nyertes = tabla[2]
+        return True
+
+
+def csekk_nyertes(tabla):
+    global jatek
+    if csekk_vizszintesen(tabla):
+        printtabla(tabla)
+        print(f"A nyertes: {nyertes}!")
+        jatek = False
+
+    elif csekk_oszloposan(tabla):
+        printtabla(tabla)
+        print(f"A nyertes: {nyertes}!")
+        jatek = False
+
+    elif csekk_atlosan(tabla):
+        printtabla(tabla)
+        print(f"A nyertes: {nyertes}!")
+        jatek = False
+
+
+def csekk_dontetlen(tabla):
+    global jatek
+    if "-" not in tabla:
+        printtabla(tabla)
+        print("Döntetlen!")
+        jatek = False
+
+
+def karakter_csere():
+    global jelenlegi_jatekos
+    if jelenlegi_jatekos == "X":
+        jelenlegi_jatekos = "O"
+    else:
+        jelenlegi_jatekos = "X"
+
+
+def bot(tabla):
+    while jelenlegi_jatekos == "O":
+        pozicio = random.randint(0, 8)
+        if tabla[pozicio] == "-":
+            tabla[pozicio] = "O"
+            karakter_csere()
+
