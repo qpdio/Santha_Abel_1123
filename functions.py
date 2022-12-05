@@ -56,18 +56,36 @@ def rekordok():
     return rekord_choice
     
     
-def rekordok_betoltese():
+def rekordok_betoltese_szamkitalalos():
     file=open(szamkitalalos_file_name, 'r', encoding='utf-8')
     file.readline()
     for egysor in file:
         egysor.strip()          
         szamkitalalos_rekord.append(int(egysor))
     file.close()
+
+def rekordok_betoltese_kopapirollo():
+    file=open(kopapirollo_file_name, 'r', encoding='utf-8')
+    file.readline()
+    for egysor in file:
+        egysor.strip()          
+        kopapirollo.append(int(egysor))
+    file.close()
     
-def osszes_rekordok_kilistazasa():
-    print('Rekordjaid:')
+def osszes_rekordok_kilistazasa_szamkitalalos():
+    print('Rekordjaid [Számkitalálós]:')
     for i in range(len(szamkitalalos_rekord)):
         print(f'{i}. {szamkitalalos_rekord[i]}')
+
+    input('Tovább...')
+
+def osszes_rekordok_kilistazasa_kopapirollo():
+    print('Pontjaid [Kő-papír-olló]:')
+    pontjaim = 0
+    for i in range(len(kopapirollo)):
+        pontjaim += kopapirollo[i]
+    print(f'{pontjaim}')
+
     input('Tovább...')
     
 def ko_papir_ollo():
@@ -114,13 +132,11 @@ def ko_papir_ollo():
     input('')
     system('cls')
     jatek_ujra = input('Szeretnél újra játszani? Igen / Nem\n').lower()
-
     if jatek_ujra == 'igen' or jatek_ujra != 'nem':
         system('cls')
         ko_papir_ollo()
     else:
         system('cls')
-        input('Tovább...')
     
     
 
@@ -229,3 +245,29 @@ def bot(tabla):
             tabla[pozicio] = "O"
             karakter_csere()
 
+while jatek:
+            printtabla(tabla)
+            bekeres(tabla)
+            csekk_nyertes(tabla)
+            csekk_dontetlen(tabla)
+            karakter_csere()
+            bot(tabla)
+            csekk_nyertes(tabla)
+            csekk_dontetlen(tabla)
+
+
+def rekordok_osszes():
+    print('0 - Vissza')
+    print('1 - Összes számkitalálós rekord listázása')
+    print('2 - Összes kő-papír-olló rekord listázása')
+    rekord_choice = input('Válasszon egy menüpontot: ')
+    return rekord_choice
+
+def legjobb_rekord_kilistazasa():
+    
+    for i in range(len(kopapirollo)):
+        if i > kopapirollo[i]:
+            i = kopapirollo[i]
+    print('Szamkitalálós játékban legjobb rekordod: ')
+    print(i+2)
+    input('Tovább...')
